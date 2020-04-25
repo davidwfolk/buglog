@@ -1,11 +1,11 @@
 <template>
-<div class="note card bg-dimg col-12 col-lg-2 mr-1 mb-2 p-2 border-0 rounded-lg">
+<div class="note card bg-success col-12 mr-1 mb-2 p-2 border-0 rounded-lg">
     <div v-if="!editing">
       <div class="row">
         <div class="col-12">
           <div class="row">
-            <h5 class="col-6 p-0 ml-2 mt-1 mb-1"><strong>{{noteData.title}}</strong></h5>
-            <div class="col-1">
+            <h5 class="col-6 p-0 ml-4  mt-1 mb-1"><strong>{{noteData.title}}</strong></h5>
+            <div class="col-1 ml-auto text-right">
               <button class="btn btn-sm textColor" @click="editing = true">
                 <svg
                   class="bi bi-pencil"
@@ -27,8 +27,6 @@
                   />
                 </svg>
               </button>
-            </div>
-            <div class="col-1">
               <button class="btn btn-sm text-danger" @click="deleteNote()">
                 <svg
                   class="bi bi-trash"
@@ -54,7 +52,7 @@
       </div>
     </div>
     <div v-else>
-      <form@submit.prevent="editNote">
+      <form @submit.prevent="editNote()">
         <input type="text" v-model="noteData.title" />
         <button class="btn text-warning">submit</button>
       </form>
@@ -65,12 +63,28 @@
 
 <script>
 export default {
-  name: 'component',
+  name: 'note',
+  props:["noteData"],
   data(){
-    return {}
+    return {
+      editing: false
+    }
   },
-  computed:{},
-  methods:{},
+  computed:{
+    profile() {
+      return this.$store.state.user;
+    },
+  },
+  methods:{
+      deleteNote() {
+      this.$store.dispatch("deleteNote", this.noteData);
+    },
+    editNote() {
+      this.$store.dispatch("editNote", this.noteData);
+      debugger
+      this.editing = false;
+    }
+  },
   components:{}
 }
 </script>

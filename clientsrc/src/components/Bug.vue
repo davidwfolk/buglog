@@ -13,7 +13,7 @@
         <h6 class="text-info">{{bugData.closed}}</h6>
         </div>
         <div class="col-12 col-lg-3">
-        <h6 class="text-info">{{bugData.closedDate}}</h6>
+        <h6 class="text-info">{{bugData.updatedAt}}</h6>
         </div>
       </div>
     </form>
@@ -30,6 +30,7 @@
 
     data() {
       return {
+        true: 
       };
     },
     computed: {},
