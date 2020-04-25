@@ -6,10 +6,10 @@ export class NotesController extends BaseController {
   constructor() {
     super("api/notes")
     this.router
+    .use(auth0provider.getAuthorizedUserInfo)
     .get('', this.getAll)
     .post('', this.createNote)
     .put('/:id', this.editNote)
-    .use(auth0provider.getAuthorizedUserInfo)
     // .delete('/:id', this.deleteNote)
   }
 
