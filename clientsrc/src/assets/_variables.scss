@@ -1,11 +1,11 @@
 $body-bg: #34485d;
 
-$primary: #004b44;
-$secondary: #06ad00;
-$danger: #bcb2eb;
-$success: #c77121;
-$warning: #81807d;
-$info: rgb(39, 51, 51);
+$primary: #41B883;
+$secondary: #ffffff;
+$danger: #d30000;
+$success: #7FA4D1;
+$warning: #1D309D;
+$info: #34485d;
 
 $blue: blue;
 $indigo: indigo;
@@ -45,6 +45,15 @@ $colors: (
   background-position: center;
   background-size: cover;
   height: 100vh;
+}
+
+.bg-dimg {
+  background:(
+    linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('https://www.wibidata.com/storage/2019/08/Page-Fault-in-Nonpaged-Area.jpg'));
+    background-position:center top;
+  background-position: center;
+  background-size: cover;
   
+  height: 100vh; 
 }
 

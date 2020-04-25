@@ -29,7 +29,7 @@ export default new Vuex.Store({
     setBugs(state, bugs) {
       state.bugs = bugs
     },
-    setActiveBug(state, board) {
+    setActiveBug(state, bug) {
       state.activeBug = bug
     },
     setActiveNote(state, notes) {
@@ -55,16 +55,19 @@ export default new Vuex.Store({
 
   //NOTE BUGS
   //#region
-  getBugs({ commit, dispatch }) {
-    api.get('bugs')
-      .then(res => {
-        commit('setBugs', res.data)
-      })
+  async getBugs({ commit, dispatch }) {
+    try {
+      let res = await api.get('bugs')
+      commit("setBugs", res.data)
+    } catch (error) {
+      console.error(error);
+    }
   },
   async getBug({ commit, dispatch }, bugId) {
     try {
       let res = await api.get("bugs/" + bugId)
       commit("setActiveBug", res.data)
+      debugger
     } catch (error) {
       console.error(error);
     }
@@ -72,6 +75,7 @@ export default new Vuex.Store({
   async addBug({ commit, dispatch }, bugData) {
     try {
       let res = await api.post("bugs/", bugData)
+      dispatch("getBugs", res.data)
     } catch (error) {
       console.error(error);
     }
@@ -88,16 +92,16 @@ export default new Vuex.Store({
 
   //NOTE List
   //#region 
-  async getListByBoardId({ commit, dispatch }, boardId) {
+  async getNoteByBugId({ commit, dispatch }, bugId) {
     try {
-      let res = await api.get("boards/" + boardId + "/notes")
+      let res = await api.get("bugs/" + bugId + "/notes")
       commit('setActiveNote', res.data)
     } catch (error) {
       console.error(error);
 
     }
   },
-  async addNewList({ commit, dispatch }, newNote) {
+  async addNewNote({ commit, dispatch }, newNote) {
     try {
       let res = await api.post("notes", newNote)
       dispatch("getBug", newNote.bugId)
@@ -106,16 +110,16 @@ export default new Vuex.Store({
       console.error(error);
     }
   },
-  async deleteList({ commit, dispatch }, noteData) {
+  async deleteNote({ commit, dispatch }, noteData) {
     try {
       let res = await api.delete("notes/" + noteData.id)
-      dispatch("getBug", noteData.boardId)
-      dispatch("getNoteByBugId", noteData.boardId)
+      dispatch("getBug", noteData.bugId)
+      dispatch("getNoteByBugId", noteData.bugId)
     } catch (error) {
       console.error(error);
     }
   },
-  async editList({ commit, dispatch }, noteData) {
+  async editNote({ commit, dispatch }, noteData) {
     try {
       let res = await api.put("notes/" + noteData.id, noteData)
       dispatch('getBoard', noteData.bugId)

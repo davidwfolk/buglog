@@ -1,9 +1,19 @@
 import { dbContext } from "../db/DbContext"
 import { BadRequest } from "../utils/Errors"
+import { notesService } from "../services/NotesService"
 
 
 class BugsService {
 
+  async getNoteByBugId(req, res, next) {
+    try {
+      let data = await notesService.getNoteByBugId(req.params.id, req.userInfo.email)
+      return res.send(data)
+    } catch (error)  {
+      next(error)
+    }
+  
+  }
   async getAll(userEmail) {
     return await dbContext.Bugs.find({ creatorEmail: userEmail }).populate("creator", "name picture")
   }

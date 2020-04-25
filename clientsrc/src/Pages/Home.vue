@@ -2,7 +2,7 @@
   <div class="bg-image">
     <div class="home">
       <img class="gotb img-fluid" alt="Vue logo" src="../assets/gotbugs.png" />
-      <h1 class="text-center text-primary pt-3">Sign up or Login in to report your issues!</h1>
+      <h1 class="text-center text-info pt-3">Sign up or Login in to report your issues!</h1>
     </div>
   </div>
 </template>
