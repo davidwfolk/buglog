@@ -8,24 +8,24 @@ class NotesService {
   async getNoteByBugId(bugId, userEmail) {
     let data = await dbContext.Notes.find({ bugId: bugId, creatorEmail: userEmail})
     if (!data) {
-      throw new BadRequest("Invalid Board or you do not own this board")
+      throw new BadRequest("Invalid BugBoard or you do not own this board")
     }
     return data
   }
-  async createList(rawData) {
+  async createNote(rawData) {
     let data = await dbContext.Notes.create(rawData)
     return data
   }
-  async editList(boardId, userEmail, update) {
-    let data = await dbContext.Notes.findOneAndUpdate({ _id: boardId, creatorEmail: userEmail },
+  async editNote(bugId, userEmail, update) {
+    let data = await dbContext.Notes.findOneAndUpdate({ _id: bugId, creatorEmail: userEmail },
       update, { new: true })
     if (!data) {
       throw new BadRequest("Invalid ID or you don't have permissions")
     }
     return data;
   }
-  async deleteList(boardId, userEmail) {
-    let data = await dbContext.Notes.findOneAndRemove({ _id: boardId, creatorEmail: userEmail })
+  async deleteNote(bugId, userEmail) {
+    let data = await dbContext.Notes.findOneAndRemove({ _id: bugId, creatorEmail: userEmail })
     if (!data) {
       throw new BadRequest("Invalid ID or you don't have permissions")
     }

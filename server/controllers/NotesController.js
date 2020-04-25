@@ -2,20 +2,19 @@ import express from 'express'
 import BaseController from "../utils/BaseController";
 import auth0provider from "@bcwdev/auth0provider";
 import { notesService } from '../services/NotesService';
-export class NoteController extends BaseController {
+export class NotesController extends BaseController {
   constructor() {
     super("api/notes")
     this.router
-      .use(auth0provider.getAuthorizedUserInfo)
-      .get('', this.getAll)
-      .post('', this.createNote)
-      // .put('/:id', this.editNote)
-      // .delete('/:id', this.deleteNote)
+    .get('', this.getAll)
+    .post('', this.createNote)
+    .put('/:id', this.editNote)
+    .use(auth0provider.getAuthorizedUserInfo)
+    // .delete('/:id', this.deleteNote)
   }
 
   async getAll(req, res, next) {
     try {
-      //only gets boards by user who is logged in
       let data = await notesService.getAll(req.userInfo.email)
       return res.send(data)
     }

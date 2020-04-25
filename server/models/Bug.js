@@ -21,3 +21,5 @@ Bug.virtual("creator",
     foreignField: "email",
     justOne: true
   })
+
+  export default Bug

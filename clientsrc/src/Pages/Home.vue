@@ -1,7 +1,9 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <h1>Welcome to Your Vue.js App</h1>
+  <div class="bg-image">
+    <div class="home">
+      <img class="gotb img-fluid" alt="Vue logo" src="../assets/gotbugs.png" />
+      <h1 class="text-center text-primary pt-3">Sign up or Login in to report your issues!</h1>
+    </div>
   </div>
 </template>
 
@@ -10,3 +12,13 @@ export default {
   name: "home"
 };
 </script>
+
+<style scoped>
+.gotb {
+   height: 27vw;
+   margin: 0;
+   display: flex;
+   margin:auto;
+   padding-top: 12%;
+}
+</style>

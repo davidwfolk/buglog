@@ -1,4 +1,4 @@
-$body-bg: #ff00f2;
+$body-bg: #34485d;
 
 $primary: #004b44;
 $secondary: #06ad00;
@@ -36,3 +36,15 @@ $colors: (
   "gray": $gray,
   "gray-dark": $gray-dark,
 ) !default;
+
+
+.bg-image {
+  background:(
+    linear-gradient( rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7) ), url('https://www.wibidata.com/storage/2019/08/Page-Fault-in-Nonpaged-Area.jpg'));
+    background-position:center top;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  
+}
+
