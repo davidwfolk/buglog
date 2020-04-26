@@ -5,6 +5,7 @@ import{dbContext}  from "../db/DbContext";
 
 const Bug = new Schema ({
   closed: { type: Boolean, required: true, default: false },
+  modifiedDate: { type: Date },
   description: { type: String, required: true },
   title: { type: String, required: true },
   closedDate: { type: Date},

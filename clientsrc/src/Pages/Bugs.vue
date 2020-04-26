@@ -20,7 +20,7 @@
       >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form @submit.prevent="addBug()">
+          <form @submit="addBug()">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
                 <h6 class=" text-center mx-auto text-primary"> Reported by: {{ profile.name }}</h6>
@@ -97,6 +97,7 @@ export default {
     addBug() {
       this.$store.dispatch("addBug", this.newBug);
       this.newBug = { title: "", description: "" };
+    $('#exampleModal').modal('hide');
     }
   },
   components: {

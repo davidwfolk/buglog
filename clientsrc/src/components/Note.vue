@@ -81,7 +81,6 @@ export default {
     },
     editNote() {
       this.$store.dispatch("editNote", this.noteData);
-      debugger
       this.editing = false;
     }
   },

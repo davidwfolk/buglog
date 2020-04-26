@@ -85,8 +85,10 @@ export default {
       this.newNote = {};
     },
     closeBug() {
+      if(confirm('are you sure you want to close this ticket?')) {
       this.bug.closed = true
       this.$store.dispatch("editBug", this.bug)
+    }
     }
   },
   components: {

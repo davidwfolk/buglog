@@ -41,11 +41,11 @@
         params: { bugId: this.bugData.id }
       });
     },
-    deleteBug() {
-      if(confirm('are you sure you want to close this ticket?')) {
-        this.$store.dispatch("deleteBug", this.bugData.id);
-      }
-    }
+    // deleteBug() {
+    //   if(confirm('are you sure you want to close this ticket?')) {
+    //     this.$store.dispatch("deleteBug", this.bugData.id);
+    //   }
+    // }
     }
   
   }

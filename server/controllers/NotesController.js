@@ -10,7 +10,7 @@ export class NotesController extends BaseController {
     .get('', this.getAll)
     .post('', this.createNote)
     .put('/:id', this.editNote)
-    // .delete('/:id', this.deleteNote)
+    .delete('/:id', this.deleteNote)
   }
 
   async getAll(req, res, next) {
@@ -36,12 +36,12 @@ export class NotesController extends BaseController {
       next(error)
     }
   }
-  // async deleteNote(req, res, next) {
-  //   try {
-  //     await notesService.deleteNote(req.params.id, req.userInfo.email)
-  //     return res.send("Successfully deleted!!!!!!!!!!")
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async deleteNote(req, res, next) {
+    try {
+      await notesService.deleteNote(req.params.id, req.userInfo.email)
+      return res.send("Successfully deleted!!!!!!!!!!")
+    } catch (error) {
+      next(error)
+    }
+  }
 }
