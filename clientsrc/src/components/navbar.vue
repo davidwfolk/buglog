@@ -30,7 +30,7 @@
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'bugs' }"
         >
-          <router-link class="nav-link" :to="{ name: 'bugs' }">Known Bugs</router-link>
+          <router-link class="nav-link" :to="{ name: 'bugs' }">Report a Bug</router-link>
         </li>
       </ul>
       <span class="navbar-text">

@@ -2,13 +2,13 @@
   <div class="board container-fluid bg-dimg">
     <div class="row ml-2">
       <div class="mt-5 card col-12">
-          <div v-if="!edit">
-        <h5 class="text-primary mt-2 p-0 m-0 border-primary">
-          <span class="text-info">Bug Issue:</span>
-        </h5>
-        <h2 class="text-primary">
-          <strong>{{bug.title}}</strong>
-        <button class="btn btn-sm textColor" @click="edit = true">
+        <div v-if="!edit">
+          <h5 class="text-primary mt-2 p-0 m-0 border-primary">
+            <span class="text-info">Bug Issue:</span>
+          </h5>
+          <h2 class="text-primary">
+            <strong>{{bug.title}}</strong>
+            <button class="btn btn-sm textColor" @click="edit = true">
               <svg
                 class="bi bi-pencil"
                 width="1em"
@@ -29,14 +29,14 @@
                 />
               </svg>
             </button>
-        </h2>
-          </div>
-          <div v-else>
-            <form @submit.prevent="editBug()">
-              <input type="text" v-model="bug.title" />
-              <button class="btn text-warning">submit</button>
-            </form>
-          </div>
+          </h2>
+        </div>
+        <div v-else>
+          <form @submit.prevent="editBug()">
+            <input type="text" v-model="bug.title" />
+            <button class="btn text-warning">submit</button>
+          </form>
+        </div>
         <h5 class="text-primary mt-2 p-0 m-0 border-primary">
           <span class="text-info">Reported By:</span>
         </h5>
@@ -44,7 +44,8 @@
           <h4>{{profile.name}}</h4>
           <h4 class="text-right">
             Status:
-            <span>{{bug.closed}}</span>
+            <span class="text-danger" v-if="bug.closed">Closed</span>
+            <span class="text-success" v-else>Open</span>
           </h4>
         </h2>
         <div class="card">
@@ -83,7 +84,12 @@
           </div>
           <div class="row p-2">
             <div class="col-12">
-              <div id="card-display" class="card border-0 bg-transparent text-light">
+              <div id="card-display" class="card border-1 bg-transparent text-light">
+                <div class="row">
+                  <h5 class="col-3 p-0 mr-auto ml-4 mt-1 mb-1 text-info">Name</h5>
+                  <h5 class="col-7 p-0 mr-auto ml-4 mt-1 mb-1 text-info">Message</h5>
+                  <h5 class="col-1 ml-auto mr-4 text-right text-info">Delete</h5>
+                </div>
                 <note v-for="note in notes" :noteData="note" :key="note._id"></note>
                 <div v-if="!closed">
                   <form @submit.prevent="addNewNote()">
@@ -118,7 +124,7 @@ export default {
   data() {
     return {
       newNote: {},
-      editing:false ,
+      editing: false,
       edit: false,
       closed: false
     };
@@ -151,15 +157,13 @@ export default {
       if (confirm("are you sure you want to close this ticket?")) {
         this.closed = true;
         this.$store.dispatch("editBug", this.bug);
-
-
       }
     },
     editBug() {
       this.$store.dispatch("editBug", this.bug);
       this.editing = false;
-      this.edit = false
-    },
+      this.edit = false;
+    }
   },
   components: {
     Note

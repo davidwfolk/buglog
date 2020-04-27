@@ -55,7 +55,7 @@
       </div>
     </div>
 
-      <div class="container-fluid">
+      <div class="container-fluid mt-3">
         <div class="row">
           <div class="card col-10 m-auto">
             <div class="border-0 bg-transparent text-center text-light">
@@ -71,6 +71,7 @@
 import Bug from "../components/Bug";
 export default {
   name: "bugs",
+
   mounted() {
     this.$store.dispatch("getBugs");
   },
