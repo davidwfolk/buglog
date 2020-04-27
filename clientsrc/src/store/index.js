@@ -96,6 +96,14 @@ export default new Vuex.Store({
       console.error(error);
     }
   },
+  // async sortBugs({commit, dispatch}, bugData) {
+  //   try {
+  //     bugData.sort((b, a) => {return b[bugData.closed == true] > a[bugData.closed == false]})
+  //     dispatch("getbugs", bugData)
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // },
   //#endregion
 
   //NOTE List

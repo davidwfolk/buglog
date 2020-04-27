@@ -62,7 +62,7 @@
                               <div class="row  border-bottom mx-2">
                   <h5 class="col-2 p-0 m-auto mt-1 mb-1 text-info">Name</h5>
                   <h5 class="col-2 p-0 m-auto mt-1 mb-1 text-info">Reported By</h5>
-                  <h5 class="col-2 p-0 m-auto mt-1 mb-1 text-info">Status</h5>
+                  <h5 type="button" class="col-2 p-0 m-auto mt-1 mb-1 text-info" @click="sortBugs()">Status</h5>
                   <h5 class="col-2 p-0 m-auto mt-1 mb-1 text-info">Last Modified</h5>
                 </div>
               <Bug v-for="bug in bugs" :bugData="bug" :key="bug.id"></Bug>
@@ -105,6 +105,26 @@ export default {
       this.$store.dispatch("addBug", this.newBug);
       this.newBug = { title: "", description: "" };
     $('#exampleModal').modal('hide');
+    },
+    sortBugs() {
+      this.bugs.sort((b,a) => {//sort is expecting 1,0,-1 -- 1 moves it up, 0 keeps it there, -1 moves it down
+      if (a.closed == true && b.closed == false){
+        return 1
+      }
+      else if (a.closed == false && b.closed == true){
+        return -1
+      }
+      else if (a.closed == true && b.closed == true) {
+        return 0
+      }
+      else if (a.closed == false && b.closed == false) {
+        return 0
+      }
+
+      })
+      
+      this.$store.dispatch("setBugs", this.bugs)
+      debugger
     }
   },
   components: {
