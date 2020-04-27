@@ -28,7 +28,7 @@
                   />
                 </svg>
               </button>-->
-              <button class="btn btn-sm text-danger" @click="deleteNote()">
+              <button class="btn btn-sm text-danger" @click="deleteNote()" v-if="bug.closed == false">
                 <svg
                   class="bi bi-trash"
                   width="1em"
@@ -47,6 +47,7 @@
                   />
                 </svg>
               </button>
+              <div v-else></div>
             </div>
           </div>
         </div>
@@ -74,11 +75,14 @@ export default {
   computed: {
     profile() {
       return this.$store.state.profile;
+    },
+    bug() {
+      return this.$store.state.activeBug
     }
   },
   methods: {
     deleteNote() {
-      if (confirm("are you sure you want to close this ticket?")) {
+      if (confirm("are you sure you want to delete this note?")) {
         this.$store.dispatch("deleteNote", this.noteData);
       }
     },

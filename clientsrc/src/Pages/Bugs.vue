@@ -59,6 +59,12 @@
         <div class="row">
           <div class="card col-10 m-auto">
             <div class="border-0 bg-transparent text-center text-light">
+                              <div class="row  border-bottom mx-2">
+                  <h5 class="col-2 p-0 m-auto mt-1 mb-1 text-info">Name</h5>
+                  <h5 class="col-2 p-0 m-auto mt-1 mb-1 text-info">Reported By</h5>
+                  <h5 class="col-2 p-0 m-auto mt-1 mb-1 text-info">Status</h5>
+                  <h5 class="col-2 p-0 m-auto mt-1 mb-1 text-info">Last Modified</h5>
+                </div>
               <Bug v-for="bug in bugs" :bugData="bug" :key="bug.id"></Bug>
             </div>
           </div>

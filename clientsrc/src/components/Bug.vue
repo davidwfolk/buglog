@@ -1,26 +1,12 @@
 <template>
-  <div class="row border-2">
-    <div class="col-12 mt-2 border-3">
-      <form @submit.prevent="selectBug()">
-        <div class="row">
+  <div class="row border-0">
+    <div class="col-12 mt-2">
+      <form type="button" @click="selectBug()">
+        <div class="row align-items-center">
           <div class="col-12 col-lg-3">
-            <h4 class="text-info">Title</h4>
-          </div>
-                    <div class="col-12 col-lg-3">
-            <h4 class="text-info">Reported By</h4>
-          </div>
-                    <div class="col-12 col-lg-3">
-            <h4 class="text-info">Status</h4>
-          </div>
-                    <div class="col-12 col-lg-3">
-            <h4 class="text-info">Last Modified</h4>
-          </div>
-        </div>
-        <div class="row border align-items-center">
-          <div class="col-12 col-lg-3">
-            <h6 class="text-primary">
+            <h5 class="text-primary">
             {{bugData.title}}
-            </h6>
+            </h5>
           </div>
           <div class="col-12 col-lg-3">
             <h6 class="text-info">{{bugData.creatorEmail}}</h6>
@@ -35,7 +21,7 @@
         </div>
       </form>
     </div>
-    <button class="btn btn-light my-1" @click="selectBug()">Select</button>
+    <!-- <button class="btn btn-light my-1" @click="selectBug()">Select</button> -->
     <!-- <button class="btn btn-danger mb-1" @click="deleteBug()">Delete</button> -->
   </div>
 </template>
