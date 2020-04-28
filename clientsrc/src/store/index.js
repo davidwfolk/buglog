@@ -138,8 +138,8 @@ export default new Vuex.Store({
   async editNote({ commit, dispatch }, noteData) {
     try {
       let res = await api.put("notes/" + noteData.id, noteData)
-      dispatch('getBoard', noteData.bugId)
-      dispatch("getListByBoardId", noteData.bugId)
+      dispatch('getBug', noteData.bugId)
+      dispatch("getNoteByBugId", noteData.bugId)
     } catch (error) {
       console.error(error);
     }

@@ -69,11 +69,15 @@
             </div>
           </div>
         </div>
+        <div class='row'>
+      <pagination></pagination>
+        </div>
       </div>
   </div>
 </template>
 
 <script>
+import Pagination from "../components/Pagination";
 import Bug from "../components/Bug";
 export default {
   name: "bugs",
@@ -88,7 +92,8 @@ export default {
     return {
       newBug: {
         title: "",
-        description: ""
+        description: "",
+        currentPage: 1,
       }
     };
   },
@@ -124,11 +129,15 @@ export default {
       })
       
       this.$store.dispatch("setBugs", this.bugs)
-      debugger
-    }
+    },
+    onPageChange(page) {
+      console.log(page)
+      this.currentPage = page;
+    },
   },
   components: {
-    Bug
+    Bug,
+    pagination: Pagination,
   }
 };
 </script>
